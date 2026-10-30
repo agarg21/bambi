@@ -34,7 +34,7 @@ jobs:
           PYTENSOR_FLAGS: linker=${{ matrix.pytensor-linker }}
           OMP_NUM_THREADS: "1"
           MKL_NUM_THREADS: "1"
-        run: pixi run -e ${{ matrix.pixi-env }} pytest -n auto --dist loadfile -vv --cov=bambi --cov-report=term --cov-report=xml tests
+        run: pixi run -e ${{ matrix.pixi-env }} pytest -n logical --dist load -vv --cov=bambi --cov-report=term --cov-report=xml tests
 
       - name: Check Coverage Report
         run: pixi run -e ${{ matrix.pixi-env }} coverage report -m
