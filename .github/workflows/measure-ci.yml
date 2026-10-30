@@ -1,19 +1,7 @@
-name: Run CI
+name: Measure CI
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "bambi/**"
-      - "tests/**"
-      - ".github/workflows/ci.yml"
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
-    paths:
-      - "bambi/**"
-      - "tests/**"
-      - ".github/workflows/ci.yml"
+  workflow_dispatch:
 
 jobs:
   test:
@@ -48,10 +36,3 @@ jobs:
 
       - name: Check Coverage Report
         run: pixi run -e ${{ matrix.pixi-env }} coverage report -m
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          env_vars: OS,PYTHON
-          name: codecov-umbrella
-          fail_ci_if_error: false
